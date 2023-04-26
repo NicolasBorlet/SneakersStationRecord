@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Sirukota';
+  src: url('./assets/fonts/Sirukota.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
