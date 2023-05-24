@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../../../../shared/ui/layout/Layout";
 
 const CartScreen = () => {
@@ -28,9 +28,9 @@ const CartScreen = () => {
   }, [cartItems]);
 
   // Add item to cart
-  const addToCart = (item: any) => {
-    setCartItems([...cartItems, item]);
-  };
+  // const addToCart = (item: any) => {
+  //   setCartItems([...cartItems, item]);
+  // };
 
   // Remove item from cart
   const removeFromCart = (index: number) => {
