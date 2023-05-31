@@ -1,6 +1,3 @@
-import axios from "axios";
-import { useQuery } from "react-query";
-
 interface ItemListingProps {
   product: any;
   shoes?: any[];

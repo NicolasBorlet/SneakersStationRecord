@@ -5,7 +5,6 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./shared/ui/ErrorPage.tsx";
 import CartScreen from "./features/Cart/ui/screens/CartScreen.tsx";
-import { ItemComponent } from "./features/Product/ui/component/ItemComponent.tsx";
 import { RecoilRoot } from "recoil";
 import ItemContainerLayout from "./features/Product/ui/layout/ItemContainerLayout.tsx";
 
