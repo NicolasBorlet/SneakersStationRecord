@@ -1,7 +1,12 @@
+import { useRecoilState } from "recoil";
 import ItemListingComponent from "../component/ItemListingComponent";
 import { useQuery } from "react-query";
+import { producsListAtom } from "../../atoms/product-atom";
+import { useEffect } from "react";
 
 const MostRecentProductLayout = () => {
+  const [isProductList, setIsProductList] = useRecoilState(producsListAtom);
+
   const {
     data: products,
     isLoading,
@@ -9,6 +14,10 @@ const MostRecentProductLayout = () => {
   } = useQuery("product", () =>
     fetch("http://localhost:3000/product").then((response) => response.json())
   );
+
+  useEffect(() => {
+    setIsProductList(products);
+  }, [products, setIsProductList]);
 
   if (isLoading) {
     return <p>Loading...</p>;

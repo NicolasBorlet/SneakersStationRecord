@@ -6,6 +6,9 @@ export default {
       sans: ["Montserrat", "sans-serif"],
       special: ["Sirukota", "sans-serif"],
     },
+    colors: {
+      buttonCart: "#980066",
+    },
     fontSize: {
       h1: "8rem",
       h2: "8rem",

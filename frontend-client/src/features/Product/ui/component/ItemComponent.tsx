@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { ItemProps } from "../layout/ItemContainerLayout";
+import { useQuery } from "react-query";
 import { selectedShoePriceState } from "../../atoms/product-atom";
 import React from "react";
 
@@ -11,10 +12,6 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
   const [selectedShoePrice, setSelectedShoePrice] = useRecoilState(
     selectedShoePriceState
   );
-
-  if (!product) {
-    return <div>Produit non trouvé</div>;
-  }
 
   useEffect(() => {
     console.log(product);
@@ -55,6 +52,10 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
     localStorage.setItem("cartItems", JSON.stringify(newCartItems));
   };
 
+  if (!product) {
+    return <div>Produit non trouvé</div>;
+  }
+
   return (
     <>
       {loading && <p>Loading...</p>}
@@ -71,25 +72,29 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
               <div>
                 <div className="flex gap-3 mb-3">
                   {isShoes && isShoes.length > 0
-                    ? isShoes.map((shoe: any) => (
-                        <div key={shoe.ShoesSizeID} className="p-3 border">
-                          {shoe.ProductID === item.ProductID ? (
-                            <div
-                              //Onclick select the price of the shoe with the ShoesSizeID and display it in the console
-                              onClick={() => {
-                                setSelectedShoePrice(shoe.ShoesSizePrice);
-                                console.log(shoe.ShoesSizePrice);
-                              }}
-                            >
-                              <p>{shoe.ShoesSize}</p>
-                            </div>
-                          ) : (
-                            <div>
-                              Aucune pointure n'est actuellement en stock
-                            </div>
-                          )}
-                        </div>
-                      ))
+                    ? isShoes
+                        .filter(
+                          (shoe: any) => shoe.ProductID === item.ProductID
+                        )
+                        .map((shoe: any) => (
+                          <div key={shoe.ShoesSizeID} className="p-3 border">
+                            {shoe.ProductID === item.ProductID ? (
+                              <div
+                                //Onclick select the price of the shoe with the ShoesSizeID and display it in the console
+                                onClick={() => {
+                                  setSelectedShoePrice(shoe.ShoesSizePrice);
+                                  console.log(shoe.ShoesSizePrice);
+                                }}
+                              >
+                                <p>{shoe.ShoesSize}</p>
+                              </div>
+                            ) : (
+                              <div>
+                                Aucune pointure n'est actuellement en stock
+                              </div>
+                            )}
+                          </div>
+                        ))
                     : null}
                 </div>
                 <div>
