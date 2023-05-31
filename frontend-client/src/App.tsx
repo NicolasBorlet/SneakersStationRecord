@@ -11,7 +11,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Layout>
         <div>
-          <Banner img="./src/assets/HOME/banner.jpg" />
+          <Banner img="./src/assets/HOME/Home_banner.jpg" />
           <Spacer size={62} />
           <MostRecentProductLayout />
         </div>

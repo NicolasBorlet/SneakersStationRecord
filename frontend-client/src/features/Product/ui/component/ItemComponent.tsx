@@ -69,53 +69,53 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
               <h1 className="text-[16px] font-semibold uppercase mb-3">
                 {item.ProductName}
               </h1>
-              <div>
-                <div className="flex gap-3 mb-3">
-                  {isShoes && isShoes.length > 0
-                    ? isShoes
-                        .filter(
-                          (shoe: any) => shoe.ProductID === item.ProductID
-                        )
-                        .map((shoe: any) => (
-                          <div key={shoe.ShoesSizeID} className="p-3 border">
-                            {shoe.ProductID === item.ProductID ? (
-                              <div
-                                //Onclick select the price of the shoe with the ShoesSizeID and display it in the console
-                                onClick={() => {
-                                  setSelectedShoePrice(shoe.ShoesSizePrice);
-                                  console.log(shoe.ShoesSizePrice);
-                                }}
-                              >
-                                <p>{shoe.ShoesSize}</p>
-                              </div>
-                            ) : (
-                              <div>
-                                Aucune pointure n'est actuellement en stock
-                              </div>
-                            )}
-                          </div>
-                        ))
-                    : null}
-                </div>
-                <div>
-                  <p>{selectedShoePrice}</p>
-                </div>
+              <div className="flex gap-3 mb-3">
+                {isShoes && isShoes.length > 0
+                  ? isShoes
+                      .filter((shoe: any) => shoe.ProductID === item.ProductID)
+                      .map((shoe: any) => (
+                        <div key={shoe.ShoesSizeID} className="p-3 border">
+                          {shoe.ProductID === item.ProductID ? (
+                            <div
+                              //Onclick select the price of the shoe with the ShoesSizeID and display it in the console
+                              onClick={() => {
+                                setSelectedShoePrice(shoe.ShoesSizePrice);
+                                console.log(shoe.ShoesSizePrice);
+                              }}
+                            >
+                              <p>{shoe.ShoesSize}</p>
+                            </div>
+                          ) : (
+                            <div>
+                              Aucune pointure n'est actuellement en stock
+                            </div>
+                          )}
+                        </div>
+                      ))
+                  : null}
+                {isShoes && (
+                  <div>
+                    <p>{selectedShoePrice}</p>
+                  </div>
+                )}
               </div>
               {isVinyl &&
                 isVinyl.length > 0 &&
                 isVinyl.map((vinyl: any) => (
                   <div key={vinyl.VinylID} className="mb-3">
-                    {vinyl.ProductID === item.ProductID && (
-                      <>
-                        <p>{vinyl.VinylPrice} €</p>
-                        <button
-                          onClick={() => addToCart(vinyl)}
-                          className="py-[2px] px-[22px] bg-buttonCart text-[#FFFFFF] font-[600]"
-                        >
-                          Ajouter au panier
-                        </button>
-                      </>
-                    )}
+                    {
+                      vinyl.ProductID === item.ProductID ? (
+                        <>
+                          <p>{vinyl.VinylPrice} €</p>
+                          <button
+                            onClick={() => addToCart(vinyl)}
+                            className="py-[2px] px-[22px] bg-buttonCart text-[#FFFFFF] font-[600]"
+                          >
+                            Ajouter au panier
+                          </button>
+                        </>
+                      ) : null // Afficher une valeur vide
+                    }
                   </div>
                 ))}
             </div>
