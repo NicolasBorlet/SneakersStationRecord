@@ -1,3 +1,6 @@
+import axios from "axios";
+import { useQuery } from "react-query";
+
 interface ItemListingProps {
   product: any;
   shoes?: any[];
@@ -21,6 +24,14 @@ const ItemListingComponent: React.FC<ItemListingProps> = ({
     <div
       key={product.ProductID}
       className="bg-red-500 h-64 w-64 uppercase tracking-[.03em]"
+      onClick={
+        product.type === "shoes"
+          ? () => (window.location.href = `/product/${product.ProductID}`)
+          : () => (window.location.href = `/product/${product.ProductID}`)
+      }
+      {...(product.type === "vinyl"
+        ? () => (window.location.href = `/product/${product.ProductID}`)
+        : () => (window.location.href = `/product/${product.ProductID}`))}
     >
       <img src={product.ProductThumb} alt={product.ProductName} />
       <h3>{product.ProductName}</h3>

@@ -5,6 +5,9 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./shared/ui/ErrorPage.tsx";
 import CartScreen from "./features/Cart/ui/screens/CartScreen.tsx";
+import { ItemComponent } from "./features/Product/ui/component/ItemComponent.tsx";
+import { RecoilRoot } from "recoil";
+import ItemContainerLayout from "./features/Product/ui/layout/ItemContainerLayout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -17,10 +20,16 @@ const router = createBrowserRouter([
     element: <CartScreen />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/product/:id",
+    element: <ItemContainerLayout />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RecoilRoot>
+      <RouterProvider router={router} />
+    </RecoilRoot>
   </React.StrictMode>
 );

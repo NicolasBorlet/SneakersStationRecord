@@ -41,11 +41,6 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
           });
       }
     });
-
-    return () => {
-      setIsShoes([]);
-      setIsVinyl([]);
-    };
   }, [product]);
 
   const addToCart = (product: any) => {

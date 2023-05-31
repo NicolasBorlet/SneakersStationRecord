@@ -1,17 +1,22 @@
-import { useEffect, useState } from "react";
 import ItemListingComponent from "../component/ItemListingComponent";
+import { useQuery } from "react-query";
 
 const MostRecentProductLayout = () => {
-  const [products, setProducts] = useState<any[]>([]);
-  //fetch data from backend
-  useEffect(() => {
-    fetch("http://localhost:3000/product/")
-      .then((response) => response.json())
-      .then((data) => {
-        const mostRecentProducts = data.slice(0, 10);
-        setProducts(mostRecentProducts);
-      });
-  }, []);
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useQuery("product", () =>
+    fetch("http://localhost:3000/product").then((response) => response.json())
+  );
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error: {isError}</p>;
+  }
 
   return (
     <div className="px-[153px]">
@@ -20,7 +25,7 @@ const MostRecentProductLayout = () => {
         <h2 className="text-h2">NOUVEAUTES</h2>
       </div>
       <div className="flex-1 flex gap-6">
-        {products.map((product) => (
+        {products.map((product: any) => (
           <ItemListingComponent key={product.ProductID} product={product} />
         ))}
       </div>
