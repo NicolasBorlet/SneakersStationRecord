@@ -20,22 +20,22 @@ export default defineConfig({
         description: "ssr_application",
         icons: [
           {
-            src: "/src/ssr-logo.png",
+            src: "/src/public/ssr-logo.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "/src/ssr-logo.png",
+            src: "/src/public//ssr-logo.png",
             sizes: "256x256",
             type: "image/png",
           },
           {
-            src: "/src/ssr-logo.png",
+            src: "/src/public/c/ssr-logo.png",
             sizes: "384x384",
             type: "image/png",
           },
           {
-            src: "/src/ssr-logo.png",
+            src: "/src/public/ssr-logo.png",
             sizes: "512x512",
             type: "image/png",
           },
