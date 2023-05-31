@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { ItemProps } from "../layout/ItemContainerLayout";
-import { useQuery } from "react-query";
-import { selectedShoePriceState } from "../../atoms/product-atom";
+import {
+  producsListAtom,
+  selectedShoePriceState,
+} from "../../atoms/product-atom";
 import React from "react";
 
 export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
@@ -12,6 +14,7 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
   const [selectedShoePrice, setSelectedShoePrice] = useRecoilState(
     selectedShoePriceState
   );
+  const producsList = useRecoilValue(producsListAtom);
 
   useEffect(() => {
     console.log(product);
