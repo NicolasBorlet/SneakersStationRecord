@@ -11,6 +11,7 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
   const [selectedShoePrice, setSelectedShoePrice] = useRecoilState(
     selectedShoePriceState
   );
+  // const [selectedShoeSize, setSelectedShoeSize] = useState(""); // État pour stocker la pointure sélectionnée
 
   useEffect(() => {
     console.log(product);
@@ -61,10 +62,10 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
       <div>
         {product.map((item: any) => (
           <div key={item.ProductID} className="flex w-full justify-between">
-            <div className="w-[50%]">
-              <img src={item.ProductImage} alt={item.ProductName} />
+            <div className="w-[35%] flex justify-end">
+              <img src="../src/assets/image-1.png" alt={item.ProductName} />
             </div>
-            <div className="w-[50%]">
+            <div className="w-[55%] flex flex-col">
               <h1 className="text-[16px] font-semibold uppercase mb-3">
                 {item.ProductName}
               </h1>

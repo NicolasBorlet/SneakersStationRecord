@@ -2,11 +2,6 @@ import { HeaderLinksProps } from "../types/shared-type";
 
 export const links: HeaderLinksProps[] = [
   {
-    links: "/",
-    title: "Home",
-    src: "./src/assets/SHARED/logo-ssr.png",
-  },
-  {
     links: "/sneakers",
     title: "Sneakers",
   },

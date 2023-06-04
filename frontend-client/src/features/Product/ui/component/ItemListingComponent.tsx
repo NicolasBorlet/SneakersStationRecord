@@ -30,8 +30,8 @@ const ItemListingComponent: React.FC<ItemListingProps> = ({
         ? () => (window.location.href = `/product/${product.ProductID}`)
         : () => (window.location.href = `/product/${product.ProductID}`))}
     >
-      <img src={product.ProductThumb} alt={product.ProductName} />
-      <h3>{product.ProductName}</h3>
+      <img src="src/assets/image-1.png" alt={product.ProductName} />
+      <h3 className="text-center">{product.ProductName}</h3>
       {product.type === "shoes" ? (
         <>{lowestPrice && <p>À partir de : {lowestPrice} €</p>}</>
       ) : (

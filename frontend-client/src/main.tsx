@@ -7,6 +7,7 @@ import ErrorPage from "./shared/ui/ErrorPage.tsx";
 import CartScreen from "./features/Cart/ui/screens/CartScreen.tsx";
 import { RecoilRoot } from "recoil";
 import ItemContainerLayout from "./features/Product/ui/layout/ItemContainerLayout.tsx";
+import SneakersScren from "./features/Sneakers/ui/screen/SneakersScreen.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/product/:id",
     element: <ItemContainerLayout />,
+  },
+  {
+    path: "sneakers",
+    element: <SneakersScren />,
   },
 ]);
 

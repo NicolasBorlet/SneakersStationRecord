@@ -45,6 +45,10 @@ const CartScreen = () => {
     setCartItems([]);
   };
 
+  useEffect(() => {
+    console.log(cartItems);
+  }, [cartItems]);
+
   return (
     <Layout>
       <h2>Cart</h2>

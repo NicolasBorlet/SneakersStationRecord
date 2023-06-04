@@ -19,15 +19,26 @@ const MostRecentProductLayout = () => {
   }
 
   return (
-    <div className="px-[153px]">
+    <div className="xl:px-[153px]">
       <div className="text-center font-special">
-        <h3 className="text-h3">NOUVEAUTES</h3>
-        <h2 className="text-h2">NOUVEAUTES</h2>
+        <h3 className="xl:text-h3 text-[32px]">NOUVEAUTES</h3>
+        <h2 className="xl:text-h2 text-[48px]">NOUVEAUTES</h2>
       </div>
-      <div className="flex-1 flex gap-6">
-        {products.map((product: any) => (
-          <ItemListingComponent key={product.ProductID} product={product} />
-        ))}
+      <div className="flex-1 flex gap-6 md:flex-row flex-col items-center">
+        {products
+          .sort((a: any, b: any) => {
+            // Tri des produits en fonction de ProductUpdateTime (du plus récent au plus ancien)
+            if (a.ProductUpdateTime > b.ProductUpdateTime) {
+              return -1;
+            }
+            if (a.ProductUpdateTime < b.ProductUpdateTime) {
+              return 1;
+            }
+            return 0;
+          })
+          .map((product: any) => (
+            <ItemListingComponent key={product.ProductID} product={product} />
+          ))}
       </div>
     </div>
   );

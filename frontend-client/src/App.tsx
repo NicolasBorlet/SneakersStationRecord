@@ -10,11 +10,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Layout>
-        <div>
-          <Banner img="./src/assets/HOME/Home_banner.jpg" />
-          <Spacer size={62} />
-          <MostRecentProductLayout />
-        </div>
+        <Banner img="./src/assets/HOME/Home_banner.jpg" />
+        <Spacer size={62} />
+        <MostRecentProductLayout />
       </Layout>
     </QueryClientProvider>
   );
