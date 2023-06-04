@@ -23,3 +23,22 @@ export interface Product {
   BrandID: number;
   ProductThumb: string;
 }
+
+export interface Shoessize {
+  ProductID: number;
+  ShoesSize: number;
+  ShoesSizePrice: number;
+  ShoesSizeQuantity: number;
+  DiscountID: number;
+  ShoesSizeID: number;
+}
+
+export interface Vinyl {
+  VinylArtist: string;
+  VinylID: number;
+  VinylDuration: string;
+  VinylPrice: number;
+  VinylQuantity: number;
+  VinylLabel: string;
+  ProductID: number;
+}
