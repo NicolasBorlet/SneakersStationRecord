@@ -1,4 +1,3 @@
-import Banner from "./shared/ui/component/Banner";
 import MostRecentProductLayout from "./features/Product/ui/layout/MostRecentProductLayout";
 import Spacer from "./shared/ui/component/Spacer";
 import Layout from "./shared/ui/layout/Layout";
@@ -9,8 +8,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Layout>
-        <Banner img="./src/assets/HOME/Home_banner.jpg" />
+      <Layout imgSrc="./src/assets/HOME/Home_banner.jpg">
         <Spacer size={62} />
         <MostRecentProductLayout />
       </Layout>

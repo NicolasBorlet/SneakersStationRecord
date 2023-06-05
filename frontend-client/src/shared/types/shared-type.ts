@@ -42,3 +42,15 @@ export interface Vinyl {
   VinylLabel: string;
   ProductID: number;
 }
+
+export interface ItemListingProps {
+  product: Product;
+  shoes?: Shoessize[];
+  vinyls?: Vinyl[];
+}
+
+export interface BrandProps {
+  BrandID: number;
+  BrandName: string;
+  BrandDesc: string;
+}

@@ -20,7 +20,7 @@ const MostRecentProductLayout = () => {
   }
 
   return (
-    <div className="xl:px-[153px]">
+    <div>
       <div className="text-center font-special">
         <h3 className="xl:text-h3 text-[32px]">NOUVEAUTES</h3>
         <h2 className="xl:text-h2 text-[48px]">NOUVEAUTES</h2>
@@ -37,6 +37,7 @@ const MostRecentProductLayout = () => {
             }
             return 0;
           })
+          .slice(0, 4)
           .map((product: Product) => (
             <ItemListingComponent key={product.ProductID} product={product} />
           ))}

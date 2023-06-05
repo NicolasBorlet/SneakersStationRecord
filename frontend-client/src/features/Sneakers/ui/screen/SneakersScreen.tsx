@@ -1,10 +1,23 @@
 import { useEffect, useState } from "react";
 import Layout from "../../../../shared/ui/layout/Layout";
-import { Product } from "../../../../shared/types/shared-type";
+import {
+  BrandProps,
+  Product,
+  Shoessize,
+} from "../../../../shared/types/shared-type";
+import ItemListingComponent from "../../../Product/ui/component/ItemListingComponent";
 
 const SneakersScren = () => {
   const [loading, setLoading] = useState<boolean>(true);
+
   const [isData, setisData] = useState<[]>();
+  const [brandData, setBrandData] = useState<[]>();
+  const [shoessizeData, setShoessizeData] = useState<[]>();
+
+  const [filter, setFilter] = useState<string>("");
+  const [brandFilter, setBrandFilter] = useState<string>("");
+  const [priceFilter, setPriceFilter] = useState<number>(0);
+  const [sizeFilter, setSizeFilter] = useState<number>(0);
 
   useEffect(() => {
     fetch(`http://localhost:3000/product`)
@@ -21,34 +34,144 @@ const SneakersScren = () => {
       });
   }, []);
 
+  fetch(`http://localhost:3000/brand`)
+    .then((response) => response.json())
+    .then((data) => {
+      setBrandData(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  fetch(`http://localhost:3000/shoessize`)
+    .then((response) => response.json())
+    .then((data) => {
+      setShoessizeData(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
   useEffect(() => {
     console.log(isData);
   }, [isData]);
+
+  useEffect(() => {
+    console.log("brandFilter : ", brandFilter);
+  }, [brandFilter]);
 
   if (loading) {
     return <div>Chargement...</div>;
   }
 
   return (
-    <Layout>
-      <h2>Sneakers</h2>
-      {isData?.map((item: Product, index: number) => (
-        <div>
-          {item.type === "shoes" && (
-            <li key={index}>
-              <div className="flex flex-col items-center justify-center">
-                <img
-                  src={item.ProductThumb}
-                  alt={item.ProductName}
-                  className="w-72 h-72"
-                />
-                <h3 className="text-h3">{item.ProductName}</h3>
-                <h4 className="text-h4">{item.ProductShortDesc}</h4>
-              </div>
-            </li>
-          )}
+    <Layout
+      imgSrc="./src/assets/HOME/Home_banner.jpg"
+      title="Sneakers"
+      color="#FF6600"
+    >
+      <div className="py-[17px] bg-[#000000] px-5 w-full left-0 top-0 flex gap-3 justify-between">
+        <div className="flex gap-4">
+          <div>
+            <input
+              type="text"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              placeholder="Filtrer les chaussures"
+            />
+          </div>
+          <div>
+            <select
+              name="brand"
+              id="brand"
+              onChange={(e) => setBrandFilter(e.target.value)}
+            >
+              <option value="">Marque</option>
+              {brandData?.map((brand: BrandProps) => (
+                <option value={brand.BrandID}>{brand.BrandName}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <select
+              name="price"
+              id="price"
+              onChange={(e) => setPriceFilter(parseFloat(e.target.value))}
+            >
+              <option value={0}>Prix</option>
+              {shoessizeData?.map((shoesSize: Shoessize) => (
+                <option value={shoesSize.ShoesSizePrice}>
+                  {shoesSize.ShoesSizePrice}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <select
+              name="size"
+              id="size"
+              onChange={(e) => setSizeFilter(parseInt(e.target.value))}
+            >
+              <option value={0}>Taille</option>
+              {shoessizeData?.map((shoesSize: Shoessize) => (
+                <option value={shoesSize.ShoesSize}>
+                  {shoesSize.ShoesSize}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      ))}
+        <div>
+          <div>
+            <button
+              onClick={() => {
+                setFilter("");
+                setBrandFilter("");
+                setPriceFilter(0);
+              }}
+              className="text-white bg-[#FF6600] px-3 py-1 rounded-md"
+            >
+              Réinitialiser les filtres
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="flex-1 flex gap-6 md:flex-row flex-col items-center">
+        {isData
+          ?.filter((item: Product) =>
+            item.ProductName.toLowerCase().includes(filter.toLowerCase())
+          )
+          .filter((item: Product) =>
+            item.BrandID.toString().includes(brandFilter)
+          )
+          .filter((product: Product) => {
+            if (priceFilter === 0) {
+              return true;
+            } else {
+              const matchingSizes = shoessizeData?.filter(
+                (size: Shoessize) =>
+                  size.ProductID === product.ProductID &&
+                  size.ShoesSizePrice == priceFilter
+              );
+              return matchingSizes && matchingSizes.length > 0;
+            }
+          })
+          .filter((product: Product) => {
+            if (sizeFilter === 0) {
+              return true;
+            } else {
+              const matchingSizes = shoessizeData?.filter(
+                (size: Shoessize) =>
+                  size.ProductID === product.ProductID &&
+                  size.ShoesSize == sizeFilter
+              );
+              return matchingSizes && matchingSizes.length > 0;
+            }
+          })
+          .map((item: Product) => (
+            <ItemListingComponent key={item.ProductID} product={item} />
+          ))}
+      </div>
     </Layout>
   );
 };
