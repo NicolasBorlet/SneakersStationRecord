@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 import Layout from "../../../../shared/ui/layout/Layout";
+import {
+  Product,
+  Shoessize,
+  Vinyl,
+} from "../../../../shared/types/shared-type";
 
 const CartScreen = () => {
   const cartItemsFromLocalStorage = localStorage.getItem("cartItems");
@@ -50,22 +55,22 @@ const CartScreen = () => {
   }, [cartItems]);
 
   return (
-    <Layout>
+    <Layout imgSrc="">
       <h2>Cart</h2>
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <ul>
-          {cartItems.map((item: any, index: number) => (
+          {cartItems.map((item: Product, index: number) => (
             <li key={index}>
               {item.ProductName} - €
               {item.type === "shoes"
-                ? shoes.map((shoe: any) => {
+                ? shoes.map((shoe: Shoessize) => {
                     if (shoe.ProductID === item.ProductID) {
                       return shoe.ShoesSizePrice;
                     }
                   })
-                : vinyls.map((vinyl: any) => {
+                : vinyls.map((vinyl: Vinyl) => {
                     if (vinyl.ProductID === item.ProductID) {
                       return vinyl.VinylPrice;
                     }

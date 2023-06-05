@@ -3,6 +3,11 @@ import { useRecoilState } from "recoil";
 import { ItemProps } from "../layout/ItemContainerLayout";
 import { selectedShoePriceState } from "../../atoms/product-atom";
 import React from "react";
+import {
+  Product,
+  Shoessize,
+  Vinyl,
+} from "../../../../shared/types/shared-type";
 
 export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
   const [isShoes, setIsShoes] = useState<[]>();
@@ -15,7 +20,7 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
 
   useEffect(() => {
     console.log(product);
-    product.map((product: any) => {
+    product.map((product: Product) => {
       if (product.type === "shoes") {
         fetch(`http://localhost:3000/shoessize`)
           .then((response) => response.json())
@@ -40,7 +45,7 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
     });
   }, [product]);
 
-  const addToCart = (product: any) => {
+  const addToCart = (product: Vinyl | Shoessize) => {
     const cartItemsFromLocalStorage = localStorage.getItem("cartItems");
     const parsedCartItems =
       cartItemsFromLocalStorage && JSON.parse(cartItemsFromLocalStorage);
@@ -60,7 +65,7 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
     <>
       {loading && <p>Loading...</p>}
       <div>
-        {product.map((item: any) => (
+        {product.map((item: Product) => (
           <div key={item.ProductID} className="flex w-full justify-between">
             <div className="w-[35%] flex justify-end">
               <img src="../src/assets/image-1.png" alt={item.ProductName} />
@@ -72,8 +77,10 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
               <div className="flex gap-3 mb-3">
                 {isShoes && isShoes.length > 0
                   ? isShoes
-                      .filter((shoe: any) => shoe.ProductID === item.ProductID)
-                      .map((shoe: any) => (
+                      .filter(
+                        (shoe: Shoessize) => shoe.ProductID === item.ProductID
+                      )
+                      .map((shoe: Shoessize) => (
                         <div key={shoe.ShoesSizeID} className="p-3 border">
                           {shoe.ProductID === item.ProductID ? (
                             <div
@@ -101,7 +108,7 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
               </div>
               {isVinyl &&
                 isVinyl.length > 0 &&
-                isVinyl.map((vinyl: any) => (
+                isVinyl.map((vinyl: Vinyl) => (
                   <div key={vinyl.VinylID} className="mb-3">
                     {
                       vinyl.ProductID === item.ProductID ? (

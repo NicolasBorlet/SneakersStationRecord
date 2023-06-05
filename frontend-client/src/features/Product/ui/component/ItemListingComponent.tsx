@@ -1,8 +1,4 @@
-interface ItemListingProps {
-  product: any;
-  shoes?: any[];
-  vinyls?: any[];
-}
+import { ItemListingProps } from "../../../../shared/types/shared-type";
 
 const ItemListingComponent: React.FC<ItemListingProps> = ({
   product,
@@ -12,8 +8,8 @@ const ItemListingComponent: React.FC<ItemListingProps> = ({
   let lowestPrice = null;
   if (product.type === "shoes" && shoes && shoes.length > 0) {
     const shoePrices = shoes
-      .filter((shoe: any) => shoe.ProductID === product.ProductID)
-      .map((shoe: any) => shoe.ShoesSizePrice);
+      .filter((shoe) => shoe.ProductID === product.ProductID)
+      .map((shoe) => shoe.ShoesSizePrice);
     lowestPrice = Math.min(...shoePrices);
   }
 
@@ -38,7 +34,7 @@ const ItemListingComponent: React.FC<ItemListingProps> = ({
         <>
           {vinyls &&
             vinyls.length > 0 &&
-            vinyls.map((vinyl: any) => (
+            vinyls.map((vinyl) => (
               <div key={vinyl.VinylID}>
                 {vinyl.ProductID === product.ProductID && (
                   <p>{vinyl.VinylPrice} €</p>

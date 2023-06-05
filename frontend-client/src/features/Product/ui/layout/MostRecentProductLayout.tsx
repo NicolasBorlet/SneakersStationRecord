@@ -1,3 +1,4 @@
+import { Product } from "../../../../shared/types/shared-type";
 import ItemListingComponent from "../component/ItemListingComponent";
 import { useQuery } from "react-query";
 
@@ -19,14 +20,14 @@ const MostRecentProductLayout = () => {
   }
 
   return (
-    <div className="xl:px-[153px]">
+    <div>
       <div className="text-center font-special">
         <h3 className="xl:text-h3 text-[32px]">NOUVEAUTES</h3>
         <h2 className="xl:text-h2 text-[48px]">NOUVEAUTES</h2>
       </div>
       <div className="flex-1 flex gap-6 md:flex-row flex-col items-center">
         {products
-          .sort((a: any, b: any) => {
+          .sort((a: Product, b: Product) => {
             // Tri des produits en fonction de ProductUpdateTime (du plus récent au plus ancien)
             if (a.ProductUpdateTime > b.ProductUpdateTime) {
               return -1;
@@ -36,7 +37,8 @@ const MostRecentProductLayout = () => {
             }
             return 0;
           })
-          .map((product: any) => (
+          .slice(0, 4)
+          .map((product: Product) => (
             <ItemListingComponent key={product.ProductID} product={product} />
           ))}
       </div>

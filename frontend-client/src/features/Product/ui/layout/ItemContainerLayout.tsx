@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { useProduct } from "../../../../shared/hooks/useProduct";
 import { ItemComponent } from "../component/ItemComponent";
 import Layout from "../../../../shared/ui/layout/Layout";
+import { Product } from "../../../../shared/types/shared-type";
 
 export interface ItemProps {
-  product: any;
+  product: Product[];
 }
 
 const ItemContainerLayout: React.FC = () => {

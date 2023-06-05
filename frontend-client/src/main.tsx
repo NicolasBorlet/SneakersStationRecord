@@ -8,12 +8,16 @@ import CartScreen from "./features/Cart/ui/screens/CartScreen.tsx";
 import { RecoilRoot } from "recoil";
 import ItemContainerLayout from "./features/Product/ui/layout/ItemContainerLayout.tsx";
 import SneakersScren from "./features/Sneakers/ui/screen/SneakersScreen.tsx";
+import AccountScreen from "./shared/ui/screen/AccountScreen.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
+  },
+  {
+    path: "account",
+    element: <AccountScreen />,
   },
   {
     path: "/cart",
@@ -27,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "sneakers",
     element: <SneakersScren />,
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
 
