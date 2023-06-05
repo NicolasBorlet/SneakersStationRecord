@@ -1,3 +1,4 @@
+import { atom } from "recoil";
 import { HeaderLinksProps } from "../types/shared-type";
 
 export const links: HeaderLinksProps[] = [
@@ -22,8 +23,8 @@ export const links: HeaderLinksProps[] = [
     title: "Contact",
   },
   {
-    links: "/login",
-    title: "Login",
+    links: "/account",
+    title: "Account",
     src: "./src/assets/SHARED/icon_profile.png",
   },
   {
@@ -32,3 +33,8 @@ export const links: HeaderLinksProps[] = [
     src: "./src/assets/SHARED/icon_shopping_cart.png",
   },
 ];
+
+export const tokenState = atom({
+  key: "token",
+  default: "",
+});

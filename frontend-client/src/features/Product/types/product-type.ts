@@ -10,3 +10,16 @@ export interface ItemProduct {
   BrandID: number;
   type: string;
 }
+
+export enum Type {
+  shoes = "shoes",
+  vinyl = "vinyl",
+}
+
+export interface SneakersContainerLayoutProps {
+  imgSrc: string;
+  title: string;
+  filter?: string;
+  productType: Type;
+  link: string;
+}

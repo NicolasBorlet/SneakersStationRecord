@@ -88,7 +88,9 @@ const SneakersScren = () => {
             >
               <option value="">Marque</option>
               {brandData?.map((brand: BrandProps) => (
-                <option value={brand.BrandID}>{brand.BrandName}</option>
+                <option value={brand.BrandID} className="bg-transparent	">
+                  {brand.BrandName}
+                </option>
               ))}
             </select>
           </div>
@@ -128,6 +130,7 @@ const SneakersScren = () => {
                 setFilter("");
                 setBrandFilter("");
                 setPriceFilter(0);
+                setSizeFilter(0);
               }}
               className="text-white bg-[#FF6600] px-3 py-1 rounded-md"
             >
