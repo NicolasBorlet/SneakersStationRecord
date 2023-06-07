@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -7,7 +7,7 @@ const Footer = () => {
     console.log(`Mail de confirmation envoyé à : ${email}`);
   };
 
-  const handleEmailChange = (event: any) => {
+  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 

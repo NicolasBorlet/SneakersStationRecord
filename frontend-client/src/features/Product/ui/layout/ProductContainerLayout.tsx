@@ -3,7 +3,7 @@ import { Product } from "../../../../shared/types/shared-type";
 import ItemListingComponent from "../component/ItemListingComponent";
 import { SneakersContainerLayoutProps } from "../../types/product-type";
 
-const SneakersContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
+const ProductContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
   imgSrc,
   title,
   filter,
@@ -135,4 +135,4 @@ const SneakersContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
   );
 };
 
-export default SneakersContainerLayout;
+export default ProductContainerLayout;

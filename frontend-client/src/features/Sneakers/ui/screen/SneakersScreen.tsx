@@ -70,7 +70,7 @@ const SneakersScren = () => {
       title="Sneakers"
       color="#FF6600"
     >
-      <div className="py-[17px] bg-[#000000] px-5 w-full left-0 top-0 flex gap-3 justify-between">
+      <div className="py-[17px] bg-[#000000] px-[50px] w-full left-0 top-0 flex gap-3 justify-between absolute">
         <div className="flex gap-4">
           <div>
             <input
@@ -139,7 +139,7 @@ const SneakersScren = () => {
           </div>
         </div>
       </div>
-      <div className="flex-1 flex gap-6 md:flex-row flex-col items-center">
+      <div className="flex-1 flex gap-6 md:flex-row flex-col items-center pt-[66px]">
         {isData
           ?.filter((item: Product) =>
             item.ProductName.toLowerCase().includes(filter.toLowerCase())

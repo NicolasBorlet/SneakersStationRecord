@@ -4,7 +4,7 @@ import Header from "../component/Header";
 
 interface LayoutProps {
   children: React.ReactNode;
-  imgSrc?: any;
+  imgSrc?: string;
   title?: string;
   color?: string;
 }

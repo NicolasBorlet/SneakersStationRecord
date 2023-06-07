@@ -1,20 +1,47 @@
 import { useState } from "react";
+import { UserProps } from "../../types/shared-type";
+import { ToastContainer } from "react-toastify";
+import { error, success } from "../component/ToastComponent";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastname] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
+    // Check if password and passwordConfirm are the same
+    if (password !== passwordConfirm) {
+      error({
+        message: "Les mots de passe ne correspondent pas !",
+      });
+      return;
+    }
+
+    //Check if email is valid
+    const emailRegex = new RegExp(
+      "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
+    );
+    if (!emailRegex.test(email)) {
+      error({
+        message: "L'adresse mail n'est pas valide !",
+      });
+      return;
+    }
+
     // Check if email is already in use
     const usersResponse = await fetch("http://localhost:3000/user/all");
     const users = await usersResponse.json();
-    const userWithEmail = users.find((user: any) => user.UserEmail === email);
+    const userWithEmail = users.find(
+      (user: UserProps) => user.UserEmail === email
+    );
     if (userWithEmail) {
-      alert("This email is already in use.");
+      error({
+        message: "Cette adresse mail est déjà utilisée !",
+      });
       return;
     } else {
       // Create new user if email is not in use
@@ -32,6 +59,11 @@ const SignIn = () => {
       });
       const data = await response.json();
       console.log(data);
+
+      // Display success message
+      success({
+        message: "Votre compte a bien été créé !",
+      });
     }
   };
 
@@ -43,7 +75,7 @@ const SignIn = () => {
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Email:
+            Email
           </label>
           <input
             type="email"
@@ -59,9 +91,9 @@ const SignIn = () => {
         <div>
           <label
             htmlFor="firstName"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-5"
           >
-            First Name:
+            Prénom
           </label>
           <input
             type="text"
@@ -75,9 +107,9 @@ const SignIn = () => {
         <div>
           <label
             htmlFor="lastName"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-5"
           >
-            Last Name:
+            Nom
           </label>
           <input
             type="text"
@@ -91,9 +123,9 @@ const SignIn = () => {
         <div>
           <label
             htmlFor="password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-5"
           >
-            Password:
+            Mot de passe
           </label>
           <input
             type="password"
@@ -105,14 +137,42 @@ const SignIn = () => {
           />
         </div>
         <div>
+          <label
+            htmlFor="password"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-5"
+          >
+            Confirmer le mot de passe
+          </label>
+          <input
+            type="password"
+            id="password-confirm"
+            value={passwordConfirm}
+            onChange={(event) => setPasswordConfirm(event.target.value)}
+            required
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+        </div>
+        <div>
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+            className="bg-[#000000] text-[#FFFFFF] px-[20px] py-[10px] rounded-[5px] mt-5"
           >
-            Sign In
+            Créer son compte
           </button>
         </div>
       </form>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };
