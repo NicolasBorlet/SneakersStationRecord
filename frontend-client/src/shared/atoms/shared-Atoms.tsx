@@ -16,7 +16,7 @@ export const links: HeaderLinksProps[] = [
   },
   {
     links: "/about",
-    title: "About",
+    title: "À propos",
   },
   {
     links: "/contact",

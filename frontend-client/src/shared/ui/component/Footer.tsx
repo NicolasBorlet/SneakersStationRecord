@@ -13,25 +13,25 @@ const Footer = () => {
 
   return (
     <footer className="w-full mt-[30px] ">
-      <div className="bg-[#000000] px-[200px] py-9">
+      <div className="bg-[#000000] lg:px-[200px] px-[25px] py-9">
         <div>
-          <img src="./src/assets/SHARED/logo_blanc.png" className="w-[130px]" />
+          <img src="./src/assets/SHARED/logo_blanc.png" className="w-[100px]" />
         </div>
-        <div className="text-[26px] text-[#FFFFFF] font-sans">
+        <div className="md:text-[26px] text-[15px] mb-2 md:mt-0 text-[#FFFFFF] font-sans">
           Nos nouveautées dans votre boîte mail
         </div>
-        <div className="w-[791px] flex justify-between">
-          <div className="w-[653px] bg-[#171717]">
+        <div className="md:w-[65%] w-[100%] flex justify-between">
+          <div className="w-[100%] bg-[#171717]">
             <input
-              className="w-full bg-[#171717] flex justify-center items-start h-full px-3 text-[#FFFFFF]"
+              className="w-full bg-[#171717] flex justify-center items-start h-full px-3 text-[#FFFFFF] text-[11px]"
               placeholder="VOTRE ADRESSE MAIL"
               type="email"
               onChange={handleEmailChange}
             />
           </div>
-          <div className="bg-[#FFFFFF] p-[15px]">
+          <div className="bg-[#FFFFFF] md:p-[15px] p-[5px]">
             <button
-              className="uppercase text-[#000000]"
+              className="uppercase text-[#000000] text-[11px]"
               type="submit"
               onClick={handleSubscribe}
             >
@@ -41,7 +41,7 @@ const Footer = () => {
         </div>
       </div>
       <div
-        className="bg-[#FFFFFF] min-h-[460px] px-[150px]"
+        className="bg-[#FFFFFF] min-h-[460px] lg:px-[150px] px-[25px]"
         style={{
           backgroundImage: `url("./src/assets/SHARED/logo_footer.png")`,
           backgroundSize: "contain",
@@ -49,24 +49,21 @@ const Footer = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div></div>
-        <div className="flex">
-          <div className="w-[30%]">
-            <div></div>
-            <div>
-              <h3 className="font-special text-[24px]">
-                Sneakers Station Radio
+        <div className="lg:flex">
+          <div className="md:w-[30%]">
+            <div className="w-full">
+              <h3 className="font-special text-[18px]">
+                Sneakers Station Record
               </h3>
             </div>
-            <div></div>
           </div>
-          <div className="w-[30%]">
+          <div className="md:w-[30%]">
             <p>Informations</p>
             <li>Suivi des commandes</li>
             <li>Retour et échanges</li>
             <li>Nous contacter</li>
           </div>
-          <div className="w-[30%]">
+          <div className="md:w-[30%]">
             <p>Informations</p>
             <li>Conditions générales de ventes</li>
             <li>Mentions légales</li>

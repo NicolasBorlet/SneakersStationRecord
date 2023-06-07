@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { ItemProps } from "../layout/ItemContainerLayout";
-import { selectedShoePriceState } from "../../atoms/product-atom";
+import {
+  selectedShoePriceState,
+  selectedShoesState,
+} from "../../atoms/product-atom";
 import React from "react";
 import {
   Product,
   Shoessize,
   Vinyl,
 } from "../../../../shared/types/shared-type";
+import { success } from "../../../../shared/ui/component/ToastComponent";
+import { ToastContainer } from "react-toastify";
 
 export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
   const [isShoes, setIsShoes] = useState<[]>();
@@ -16,6 +21,8 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
   const [selectedShoePrice, setSelectedShoePrice] = useRecoilState(
     selectedShoePriceState
   );
+  const [selectedShoes, setSelectedShoes] =
+    useRecoilState<Shoessize>(selectedShoesState); // État pour stocker les chaussures sélectionnées
   // const [selectedShoeSize, setSelectedShoeSize] = useState(""); // État pour stocker la pointure sélectionnée
 
   useEffect(() => {
@@ -87,6 +94,7 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
                               //Onclick select the price of the shoe with the ShoesSizeID and display it in the console
                               onClick={() => {
                                 setSelectedShoePrice(shoe.ShoesSizePrice);
+                                setSelectedShoes(shoe);
                                 console.log(shoe.ShoesSizePrice);
                               }}
                             >
@@ -102,7 +110,22 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
                   : null}
                 {isShoes && (
                   <div>
-                    <p>{selectedShoePrice}</p>
+                    <div>
+                      <p>{selectedShoePrice}</p>
+                    </div>
+                    <div>
+                      <button
+                        onClick={async () => {
+                          await addToCart(selectedShoes);
+                          success({
+                            message: "Produit ajouté au panier !",
+                          });
+                        }}
+                        className="py-[2px] px-[22px] bg-buttonCart text-[#FFFFFF] font-[600]"
+                      >
+                        Ajouter au panier
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -115,7 +138,12 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
                         <>
                           <p>{vinyl.VinylPrice} €</p>
                           <button
-                            onClick={() => addToCart(vinyl)}
+                            onClick={async () => {
+                              await addToCart(vinyl);
+                              success({
+                                message: "Produit ajouté au panier !",
+                              });
+                            }}
                             className="py-[2px] px-[22px] bg-buttonCart text-[#FFFFFF] font-[600]"
                           >
                             Ajouter au panier
@@ -129,6 +157,7 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
           </div>
         ))}
       </div>
+      <ToastContainer />
     </>
   );
 };

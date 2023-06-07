@@ -16,7 +16,7 @@ const ItemListingComponent: React.FC<ItemListingProps> = ({
   return (
     <div
       key={product.ProductID}
-      className="bg-red-500 h-64 w-64 uppercase tracking-[.03em]"
+      className="bg-red-500 h-64 w-64 uppercase tracking-[.03em] text-center"
       onClick={
         product.type === "shoes"
           ? () => (window.location.href = `/product/${product.ProductID}`)
@@ -26,7 +26,13 @@ const ItemListingComponent: React.FC<ItemListingProps> = ({
         ? () => (window.location.href = `/product/${product.ProductID}`)
         : () => (window.location.href = `/product/${product.ProductID}`))}
     >
-      <img src="src/assets/image-1.png" alt={product.ProductName} />
+      <div className="px-5 flex items-center justify-center">
+        <img
+          src="src/assets/image-1.png"
+          alt={product.ProductName}
+          className="md:w-full"
+        />
+      </div>
       <h3 className="text-center">{product.ProductName}</h3>
       {product.type === "shoes" ? (
         <>{lowestPrice && <p>À partir de : {lowestPrice} €</p>}</>

@@ -11,6 +11,10 @@ const AccountScreen = () => {
 
   useEffect(() => {
     console.log(token);
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
   }, []);
 
   return (

@@ -3,7 +3,7 @@ import Spacer from "../component/Spacer";
 const ShopLayout = () => {
   return (
     <div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center w-full px-2 md:px-0">
         <div className="uppercase text-[15px] max-w-[200px] w-full font-semibold tracking-[.25em] mr-6">
           Notre boutique
         </div>
@@ -20,7 +20,7 @@ const ShopLayout = () => {
             }}
           />
         </div>
-        <div className="px-[15px] py-2 border w-full max-w-[105px] ml-6">
+        <div className="md:px-[15px] px-[5px] py-2 border w-full max-w-[105px] ml-6 text-center">
           <a className="text-[12px]" href="about">
             À PROPOS
           </a>
