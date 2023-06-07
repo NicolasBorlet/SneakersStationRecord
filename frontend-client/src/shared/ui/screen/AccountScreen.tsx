@@ -4,12 +4,17 @@ import Layout from "../layout/Layout";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { tokenState } from "../../atoms/shared-Atoms";
+import { success } from "../component/ToastComponent";
 
 const AccountScreen = () => {
   const [token, setToken] = useRecoilState(tokenState);
 
   useEffect(() => {
     console.log(token);
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
   }, []);
 
   return (
@@ -21,6 +26,9 @@ const AccountScreen = () => {
             onClick={() => {
               localStorage.removeItem("token");
               setToken("");
+              success({
+                message: "Déconnexion réussie !",
+              });
             }}
           >
             Se déconnecter

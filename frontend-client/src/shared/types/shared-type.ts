@@ -54,3 +54,21 @@ export interface BrandProps {
   BrandName: string;
   BrandDesc: string;
 }
+
+export enum UserRole {
+  ADMIN = "ADMIN",
+  MEMBER = "MEMBER",
+}
+
+export interface UserProps {
+  UserID: number;
+  UserEmail: string;
+  UserPassword: string;
+  UserFirstName: string;
+  UserLastName: string;
+  UserCity: string;
+  UserState: string;
+  UserEmailVerified: boolean;
+  UserRegistrationDate: string;
+  UserRole: UserRole;
+}

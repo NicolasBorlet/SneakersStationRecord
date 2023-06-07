@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 export const useProduct = (id: string) => {
-  const [product, setProduct] = useState<any>(null);
+  const [product, setProduct] = useState<[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 

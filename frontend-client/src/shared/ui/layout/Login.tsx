@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { tokenState } from "../../atoms/shared-Atoms";
+import { error, success } from "../component/ToastComponent";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -24,8 +25,14 @@ const Login = () => {
         localStorage.setItem("token", token);
         console.log("Connexion successful! Here is your token: ", token);
         setIsToken(token);
+        success({
+          message: "Connexion réussie !",
+        });
       } else {
         setErrorMessage("Invalid username or password");
+        error({
+          message: "Identifiant ou mot de passe incorrect !",
+        });
       }
     } catch (error) {
       console.error(error);
@@ -52,9 +59,9 @@ const Login = () => {
           />
           <label
             htmlFor="password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-5"
           >
-            Password
+            Mot de passe
           </label>
           <input
             type="password"
@@ -65,9 +72,9 @@ const Login = () => {
           />
           <button
             type="submit"
-            className="text-white mt-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="bg-[#000000] text-[#FFFFFF] px-[20px] py-[10px] rounded-[5px] mt-5"
           >
-            Login
+            Se connecter
           </button>
         </form>
       </div>

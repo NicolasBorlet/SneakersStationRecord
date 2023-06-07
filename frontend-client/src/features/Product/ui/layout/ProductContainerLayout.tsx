@@ -3,7 +3,7 @@ import { Product } from "../../../../shared/types/shared-type";
 import ItemListingComponent from "../component/ItemListingComponent";
 import { SneakersContainerLayoutProps } from "../../types/product-type";
 
-const SneakersContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
+const ProductContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
   imgSrc,
   title,
   filter,
@@ -38,9 +38,9 @@ const SneakersContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
   return (
     <div>
       {productType === "shoes" && (
-        <div className="flex w-full gap-5">
+        <div className="md:flex w-full gap-5">
           <div
-            className="max-w-[25%] w-full flex justify-center items-center h-[400px]"
+            className="md:max-w-[25%] w-full flex justify-center items-center h-[400px] max-h-[200px] md:max-h-[100%]"
             style={{
               backgroundImage: `url(${imgSrc})`,
               backgroundSize: "cover",
@@ -52,8 +52,8 @@ const SneakersContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
               {title}
             </div>
           </div>
-          <div className="w-full">
-            <div className="flex justify-between items-center">
+          <div className="w-full px-2 md:px-0">
+            <div className="flex justify-between items-center mt-3 md:mt-0">
               <div className="uppercase text-[15px] font-semibold tracking-[.25em] mr-6">
                 {title}
               </div>
@@ -70,7 +70,7 @@ const SneakersContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
                   }}
                 />
               </div>
-              <div className="px-[15px] py-2 border w-full max-w-[105px] ml-6">
+              <div className="md:px-[15px] px-[5px] py-2 border w-full max-w-[105px] ml-6 text-center">
                 <a className="text-[12px]" href={title}>
                   TOUT VOIR
                 </a>
@@ -85,8 +85,8 @@ const SneakersContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
         </div>
       )}
       {productType === "vinyl" && (
-        <div className="flex w-full gap-5">
-          <div className="w-full">
+        <div className="flex w-full gap-5 md:flex-row flex-col-reverse">
+          <div className="w-full px-2 md:px-0">
             <div className="flex justify-between items-center">
               <div className="uppercase text-[15px] font-semibold tracking-[.25em] mr-6">
                 {title}
@@ -104,7 +104,7 @@ const SneakersContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
                   }}
                 />
               </div>
-              <div className="px-[15px] py-2 border w-full max-w-[105px] ml-6">
+              <div className="md:px-[15px] px-[5px] py-2 border w-full max-w-[105px] ml-6 text-center">
                 <a className="text-[12px]" href={title}>
                   TOUT VOIR
                 </a>
@@ -117,7 +117,7 @@ const SneakersContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
             </div>
           </div>
           <div
-            className="max-w-[25%] w-full flex justify-center items-center h-[400px]"
+            className="md:max-w-[25%] w-full flex justify-center items-center h-[400px] max-h-[200px] md:max-h-[100%]"
             style={{
               backgroundImage: `url(${imgSrc})`,
               backgroundSize: "cover",
@@ -135,4 +135,4 @@ const SneakersContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
   );
 };
 
-export default SneakersContainerLayout;
+export default ProductContainerLayout;

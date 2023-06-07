@@ -70,14 +70,15 @@ const SneakersScren = () => {
       title="Sneakers"
       color="#FF6600"
     >
-      <div className="py-[17px] bg-[#000000] px-5 w-full left-0 top-0 flex gap-3 justify-between">
-        <div className="flex gap-4">
+      <div className="py-[17px] bg-[#000000] px-[50px] w-full left-0 top-0 flex gap-3  absolute">
+        <div className="flex gap-4 items-center">
           <div>
             <input
               type="text"
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
               placeholder="Filtrer les chaussures"
+              className="font-special bg-[#000000] text-[#FFFFFF] text-[18px] border border-white rounded-md flex items-center"
             />
           </div>
           <div>
@@ -85,10 +86,11 @@ const SneakersScren = () => {
               name="brand"
               id="brand"
               onChange={(e) => setBrandFilter(e.target.value)}
+              className="font-special bg-[#000000] text-[#FFFFFF] text-[18px]" // Apply font and background color classes
             >
               <option value="">Marque</option>
               {brandData?.map((brand: BrandProps) => (
-                <option value={brand.BrandID} className="bg-transparent	">
+                <option value={brand.BrandID} className="bg-transparent">
                   {brand.BrandName}
                 </option>
               ))}
@@ -99,6 +101,7 @@ const SneakersScren = () => {
               name="price"
               id="price"
               onChange={(e) => setPriceFilter(parseFloat(e.target.value))}
+              className="font-special bg-[#000000] text-[#FFFFFF] text-[18px]"
             >
               <option value={0}>Prix</option>
               {shoessizeData?.map((shoesSize: Shoessize) => (
@@ -113,6 +116,7 @@ const SneakersScren = () => {
               name="size"
               id="size"
               onChange={(e) => setSizeFilter(parseInt(e.target.value))}
+              className="font-special bg-[#000000] text-[#FFFFFF] text-[18px]"
             >
               <option value={0}>Taille</option>
               {shoessizeData?.map((shoesSize: Shoessize) => (
@@ -124,7 +128,7 @@ const SneakersScren = () => {
           </div>
         </div>
         <div>
-          <div>
+          <div className="ml-5">
             <button
               onClick={() => {
                 setFilter("");
@@ -132,14 +136,14 @@ const SneakersScren = () => {
                 setPriceFilter(0);
                 setSizeFilter(0);
               }}
-              className="text-white bg-[#FF6600] px-3 py-1 rounded-md"
+              className="text-white bg-[#FFFFFF] px-3 py-1 "
             >
               Réinitialiser les filtres
             </button>
           </div>
         </div>
       </div>
-      <div className="flex-1 flex gap-6 md:flex-row flex-col items-center">
+      <div className="flex-1 flex gap-6 md:flex-row flex-col items-center pt-[66px]">
         {isData
           ?.filter((item: Product) =>
             item.ProductName.toLowerCase().includes(filter.toLowerCase())

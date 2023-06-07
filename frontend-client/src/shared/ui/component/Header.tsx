@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { HeaderLinksProps } from "../../types/shared-type";
 import { links } from "../../atoms/shared-Atoms";
 import { useEffect, useState } from "react";
@@ -25,7 +24,7 @@ const HeaderLinks: React.FC<HeaderLinksProps> = ({
 };
 
 const Header = () => {
-  const [cartItemsCount, setCartItemsCount] = useState<number>(0);
+  const [, setCartItemsCount] = useState<number>(0);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
@@ -127,13 +126,6 @@ const Header = () => {
                 isVisible={isVisible}
               />
             ))}
-            {cartItemsCount > 0 && (
-              <li>
-                <Link to="/cart" className="relative">
-                  <span className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
-                </Link>
-              </li>
-            )}
           </div>
         </div>
       </nav>
