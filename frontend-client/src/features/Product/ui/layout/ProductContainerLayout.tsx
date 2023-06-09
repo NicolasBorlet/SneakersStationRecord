@@ -38,9 +38,9 @@ const ProductContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
   return (
     <div>
       {productType === "shoes" && (
-        <div className="md:flex w-full gap-5">
+        <div className="md:flex w-full gap-5 px-3 xl:px-0">
           <div
-            className="md:max-w-[25%] w-full flex justify-center items-center h-[400px] max-h-[200px] md:max-h-[100%]"
+            className="md:max-w-[25%] w-full flex justify-center items-center h-[400px] max-h-[200px] md:max-h-[100%] md:min-h-[542px]"
             style={{
               backgroundImage: `url(${imgSrc})`,
               backgroundSize: "cover",
@@ -76,7 +76,7 @@ const ProductContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
                 </a>
               </div>
             </div>
-            <div className="flex-1 flex gap-6 md:flex-row flex-col items-center flex-wrap">
+            <div className="grid xl:grid-cols-3 justify-items-center sm:grid-cols-2 grid-cols-1">
               {isData?.slice(0, 6).map((item: Product) => (
                 <ItemListingComponent key={item.ProductID} product={item} />
               ))}
@@ -85,7 +85,7 @@ const ProductContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
         </div>
       )}
       {productType === "vinyl" && (
-        <div className="flex w-full gap-5 md:flex-row flex-col-reverse">
+        <div className="flex w-full gap-5 md:flex-row flex-col-reverse px-3 xl:px-0">
           <div className="w-full px-2 md:px-0">
             <div className="flex justify-between items-center">
               <div className="uppercase text-[15px] font-semibold tracking-[.25em] mr-6">
@@ -110,14 +110,14 @@ const ProductContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
                 </a>
               </div>
             </div>
-            <div className="flex-1 flex gap-6 md:flex-row flex-col items-center flex-wrap">
+            <div className="grid xl:grid-cols-3 justify-items-center sm:grid-cols-2 grid-cols-1">
               {isData?.slice(0, 6).map((item: Product) => (
                 <ItemListingComponent key={item.ProductID} product={item} />
               ))}
             </div>
           </div>
           <div
-            className="md:max-w-[25%] w-full flex justify-center items-center h-[400px] max-h-[200px] md:max-h-[100%]"
+            className="md:max-w-[25%] w-full flex justify-center items-center h-[400px] max-h-[200px] md:min-h-[542px]"
             style={{
               backgroundImage: `url(${imgSrc})`,
               backgroundSize: "cover",

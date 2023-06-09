@@ -35,7 +35,7 @@ const AccountScreen = () => {
           </button>
         </div>
       ) : (
-        <div className="w-full flex gap-5">
+        <div className="w-full flex gap-5 px-3">
           <Login />
           <SignIn />
         </div>

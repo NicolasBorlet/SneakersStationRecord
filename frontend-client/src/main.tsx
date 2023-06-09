@@ -9,6 +9,9 @@ import { RecoilRoot } from "recoil";
 import ItemContainerLayout from "./features/Product/ui/layout/ItemContainerLayout.tsx";
 import SneakersScren from "./features/Sneakers/ui/screen/SneakersScreen.tsx";
 import AccountScreen from "./shared/ui/screen/AccountScreen.tsx";
+import PayementScreen from "./features/Payement/ui/screens/PayementScreen.tsx";
+import EventScreen from "./features/Events/ui/screens/EventScreen.tsx";
+import VinylScreen from "./features/Vinyls/ui/screen/VinylScreen.tsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +34,18 @@ const router = createBrowserRouter([
   {
     path: "sneakers",
     element: <SneakersScren />,
+  },
+  {
+    path: "vinyles",
+    element: <VinylScreen />,
+  },
+  {
+    path: "payement",
+    element: <PayementScreen />,
+  },
+  {
+    path: "events",
+    element: <EventScreen />,
   },
   {
     path: "*",

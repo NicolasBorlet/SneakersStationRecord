@@ -23,6 +23,7 @@ const Login = () => {
         const { accessToken } = await response.json();
         const { access_token: token } = accessToken;
         localStorage.setItem("token", token);
+        localStorage.setItem("userMail", username);
         console.log("Connexion successful! Here is your token: ", token);
         setIsToken(token);
         success({
