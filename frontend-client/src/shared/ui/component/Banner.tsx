@@ -20,7 +20,7 @@ const Banner: React.FC<BannerProps> = ({ title, img, color }) => {
           style={{
             color: color,
           }}
-          className="text-h1 font-bold font-sans uppercase"
+          className="lg:text-h1 md:text-[96px] sm:text-[48px] text-[32px] font-bold font-sans uppercase"
         >
           {title}
         </h1>

@@ -7,7 +7,7 @@ export const links: HeaderLinksProps[] = [
     title: "Sneakers",
   },
   {
-    links: "/vinyls",
+    links: "/vinyles",
     title: "Vinyles",
   },
   {

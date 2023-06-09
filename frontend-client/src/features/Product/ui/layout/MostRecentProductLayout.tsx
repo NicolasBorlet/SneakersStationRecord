@@ -25,7 +25,7 @@ const MostRecentProductLayout = () => {
         <h3 className="xl:text-h3 text-[32px]">NOUVEAUTES</h3>
         <h2 className="xl:text-h2 text-[48px]">NOUVEAUTES</h2>
       </div>
-      <div className="flex-1 flex gap-6 md:flex-row flex-col items-center">
+      <div className="grid md:grid-cols-3 xl:grid-cols-4 justify-items-center sm:grid-cols-2 grid-cols-1 px-3">
         {products
           .sort((a: Product, b: Product) => {
             // Tri des produits en fonction de ProductUpdateTime (du plus récent au plus ancien)

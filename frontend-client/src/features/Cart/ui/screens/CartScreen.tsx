@@ -9,6 +9,7 @@ const CartScreen = () => {
   const [cartItems, setCartItems] = useState(parsedCartItems || []);
 
   const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState(0);
 
   // Update local storage when cart items change
   useEffect(() => {
@@ -21,6 +22,23 @@ const CartScreen = () => {
       });
   }, [cartItems]);
 
+  // Calculate total
+  useEffect(() => {
+    let total = 0;
+    cartItems.forEach((item: any) => {
+      console.log(item);
+      //set the price in number
+      if (item.VinylPrice) {
+        total += parseInt(item.VinylPrice);
+      }
+      if (item.ShoesSizePrice) {
+        total += parseInt(item.ShoesSizePrice);
+      }
+    });
+    setTotal(total);
+    localStorage.setItem("total", JSON.stringify(total));
+  }, [cartItems]);
+
   // Remove item from cart
   const removeFromCart = (index: number) => {
     const newCartItems = [...cartItems];
@@ -31,6 +49,7 @@ const CartScreen = () => {
   // Clear cart
   const clearCart = () => {
     localStorage.removeItem("cartItems");
+    localStorage.setItem("total", JSON.stringify(0));
     setCartItems([]);
   };
 
@@ -38,7 +57,7 @@ const CartScreen = () => {
     <Layout imgSrc="">
       <h2 className="text-h3">Panier</h2>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p>Votre panier est vide</p>
       ) : (
         <ul>
           {cartItems.map((item: any, index: number) => (
@@ -94,13 +113,13 @@ const CartScreen = () => {
           ))}
         </ul>
       )}
+      <p className="my-2">Total:{total}$</p>
       <div className="flex gap-5">
-        <button
-          onClick={clearCart}
-          className="bg-[#000000] text-[#FFFFFF] px-[20px] py-[10px] rounded-[5px] mt-5"
-        >
-          Payer
-        </button>
+        <a href="/payement">
+          <button className="relative bg-[#FFFFFF] text-[#000000] hover:bg-[#000000] hover:text-[#FFFFFF] px-[20px] py-[10px] rounded-[5px] mt-5 transition-all duration-300 border-[1px] border-[#000000]">
+            Payer
+          </button>
+        </a>
         <button
           onClick={clearCart}
           className="relative bg-[#FFFFFF] text-[#000000] hover:bg-[#000000] hover:text-[#FFFFFF] px-[20px] py-[10px] rounded-[5px] mt-5 transition-all duration-300 border-[1px] border-[#000000]"

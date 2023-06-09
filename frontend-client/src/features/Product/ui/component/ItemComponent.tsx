@@ -75,7 +75,14 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
         {product.map((item: Product) => (
           <div key={item.ProductID} className="flex w-full justify-between">
             <div className="w-[35%] flex justify-end">
-              <img src="../src/assets/image-1.png" alt={item.ProductName} />
+              <img
+                src={
+                  item.type === "shoes"
+                    ? "../src/assets/image-1.png"
+                    : "../src/assets/vinyl.png"
+                }
+                alt={item.ProductName}
+              />
             </div>
             <div className="w-[55%] flex flex-col">
               <h1 className="text-[16px] font-semibold uppercase mb-3">
