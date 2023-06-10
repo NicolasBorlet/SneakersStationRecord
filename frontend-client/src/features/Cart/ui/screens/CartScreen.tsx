@@ -26,7 +26,7 @@ const CartScreen = () => {
   useEffect(() => {
     let total = 0;
     cartItems.forEach((item: any) => {
-      console.log(item);
+      console.log("item", item);
       //set the price in number
       if (item.VinylPrice) {
         total += parseInt(item.VinylPrice);
@@ -75,7 +75,7 @@ const CartScreen = () => {
                           <div>
                             <p>{product.ProductName}</p>
                             <p>{product.ProductShortDesc}</p>
-                            <p>{item.VinylPrice} $</p>
+                            <p>{item.VinylPrice}€</p>
                           </div>
                           <button
                             onClick={() => removeFromCart(index)}
@@ -94,7 +94,7 @@ const CartScreen = () => {
                           <div>
                             <p>{product.ProductName}</p>
                             <p>{product.ProductShortDesc}</p>
-                            <p>{item.ShoesSizePrice} $</p>
+                            <p>{item.ShoesSizePrice} €</p>
                           </div>
                           <button
                             onClick={() => removeFromCart(index)}
@@ -113,7 +113,7 @@ const CartScreen = () => {
           ))}
         </ul>
       )}
-      <p className="my-2">Total:{total}$</p>
+      <p className="my-2">Total: {total}€</p>
       <div className="flex gap-5">
         <a href="/payement">
           <button className="relative bg-[#FFFFFF] text-[#000000] hover:bg-[#000000] hover:text-[#FFFFFF] px-[20px] py-[10px] rounded-[5px] mt-5 transition-all duration-300 border-[1px] border-[#000000]">

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Product } from "../../../../shared/types/shared-type";
 import ItemListingComponent from "../component/ItemListingComponent";
 import { SneakersContainerLayoutProps } from "../../types/product-type";
+import { useRecoilValue } from "recoil";
+import { productState } from "../../../../shared/atoms/shared-Atoms";
 
 const ProductContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
   imgSrc,
@@ -10,22 +12,14 @@ const ProductContainerLayout: React.FC<SneakersContainerLayoutProps> = ({
   productType,
 }) => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [isData, setisData] = useState<[]>();
+  const [isData, setisData] = useState<Product[]>();
+  const products = useRecoilValue(productState);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/product`)
-      .then((response) => response.json())
-      .then((data) => {
-        const isData = data.filter(
-          (product: Product) => product.type === `${filter}`
-        );
-        setisData(isData);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [filter]);
+    const filteredData = products.filter((product) => product.type === filter);
+    setisData(filteredData);
+    setLoading(false);
+  }, [filter, products]);
 
   useEffect(() => {
     console.log(isData);
