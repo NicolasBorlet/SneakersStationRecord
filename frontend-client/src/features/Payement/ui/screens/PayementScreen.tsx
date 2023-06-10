@@ -10,24 +10,31 @@ const stripePromise = loadStripe(
 
 const PayementScreen = () => {
   const [clientSecret, setClientSecret] = useState("");
+  const total = localStorage.getItem("total");
+  const cartItemsFromLocalStorage = localStorage.getItem("cartItems");
+  const payload = {
+    cartItems:
+      cartItemsFromLocalStorage && JSON.parse(cartItemsFromLocalStorage),
+    amount: total && JSON.parse(total) * 100, // Conversion en centimes
+    currency: "eur",
+  };
 
   useEffect(() => {
     fetch("http://localhost:3000/payment", {
       method: "POST",
-      body: JSON.stringify({
-        amount: 1000,
-        currency: "eur",
-      }),
+      body: JSON.stringify(payload),
     })
       .then(async (result) => {
         const { clientSecret } = await result.json();
         setClientSecret(clientSecret);
-
-        console.log(clientSecret);
       })
       .catch((err) => {
         console.log(err);
       });
+  }, []);
+
+  useEffect(() => {
+    console.log(localStorage.getItem("cartItems"));
   }, []);
 
   return (

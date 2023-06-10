@@ -22,8 +22,9 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
     selectedShoePriceState
   );
   const [selectedShoes, setSelectedShoes] =
-    useRecoilState<Shoessize>(selectedShoesState); // État pour stocker les chaussures sélectionnées
-  // const [selectedShoeSize, setSelectedShoeSize] = useState(""); // État pour stocker la pointure sélectionnée
+    useRecoilState<Shoessize>(selectedShoesState);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [isSelect, setIsSelect] = useState<[number]>([1]);
 
   useEffect(() => {
     console.log(product);
@@ -88,37 +89,41 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
               <h1 className="text-[16px] font-semibold uppercase mb-3">
                 {item.ProductName}
               </h1>
-              <div className="flex gap-3 mb-3">
-                {isShoes && isShoes.length > 0
-                  ? isShoes
-                      .filter(
-                        (shoe: Shoessize) => shoe.ProductID === item.ProductID
-                      )
-                      .map((shoe: Shoessize) => (
-                        <div key={shoe.ShoesSizeID} className="p-3 border">
-                          {shoe.ProductID === item.ProductID ? (
-                            <div
-                              //Onclick select the price of the shoe with the ShoesSizeID and display it in the console
-                              onClick={() => {
-                                setSelectedShoePrice(shoe.ShoesSizePrice);
-                                setSelectedShoes(shoe);
-                                console.log(shoe.ShoesSizePrice);
-                              }}
-                            >
-                              <p>{shoe.ShoesSize}</p>
-                            </div>
-                          ) : (
-                            <div>
-                              Aucune pointure n'est actuellement en stock
-                            </div>
-                          )}
-                        </div>
-                      ))
-                  : null}
+              <div className="flex gap-3 mb-3 flex-col">
+                <div className="flex gap-3">
+                  {isShoes && isShoes.length > 0
+                    ? isShoes
+                        .filter(
+                          (shoe: Shoessize) => shoe.ProductID === item.ProductID
+                        )
+                        .map((shoe: Shoessize) => (
+                          <div key={shoe.ShoesSizeID} className="p-3 border">
+                            {shoe.ProductID === item.ProductID ? (
+                              <div
+                                //Onclick select the price of the shoe with the ShoesSizeID and display it in the console
+                                onClick={() => {
+                                  setSelectedShoePrice(shoe.ShoesSizePrice);
+                                  setSelectedShoes(shoe);
+                                  console.log(shoe.ShoesSizePrice);
+                                }}
+                              >
+                                <p>{shoe.ShoesSize}</p>
+                              </div>
+                            ) : (
+                              <div>
+                                Aucune pointure n'est actuellement en stock
+                              </div>
+                            )}
+                          </div>
+                        ))
+                    : null}
+                </div>
                 {isShoes && (
-                  <div>
+                  <div className="flex flex-col gap-y-3">
                     <div>
-                      <p>{selectedShoePrice}</p>
+                      <div>
+                        <p>{selectedShoePrice}€</p>
+                      </div>
                     </div>
                     <div>
                       <button
@@ -139,25 +144,84 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
               {isVinyl &&
                 isVinyl.length > 0 &&
                 isVinyl.map((vinyl: Vinyl) => (
-                  <div key={vinyl.VinylID} className="mb-3">
-                    {
-                      vinyl.ProductID === item.ProductID ? (
-                        <>
-                          <p>{vinyl.VinylPrice} €</p>
-                          <button
-                            onClick={async () => {
-                              await addToCart(vinyl);
-                              success({
-                                message: "Produit ajouté au panier !",
-                              });
-                            }}
-                            className="py-[2px] px-[22px] bg-buttonCart text-[#FFFFFF] font-[600]"
-                          >
-                            Ajouter au panier
-                          </button>
-                        </>
-                      ) : null // Afficher une valeur vide
-                    }
+                  <div>
+                    <div className="flex gap-3 mb-3">
+                      <div
+                        className="p-3 border w-[45px] text-center"
+                        onClick={() => {
+                          setQuantity(1);
+                          setIsSelect([1]);
+                        }}
+                        style={
+                          isSelect.includes(1)
+                            ? { backgroundColor: "#980066", color: "#FFFFFF" }
+                            : { backgroundColor: "#FFFFFF" }
+                        }
+                      >
+                        1
+                      </div>
+                      <div
+                        className="p-3 border w-[45px] text-center"
+                        onClick={() => {
+                          setQuantity(2);
+                          setIsSelect([2]);
+                        }}
+                        style={
+                          isSelect.includes(2)
+                            ? { backgroundColor: "#980066", color: "#FFFFFF" }
+                            : { backgroundColor: "#FFFFFF" }
+                        }
+                      >
+                        2
+                      </div>
+                      <div
+                        className="p-3 border w-[45px] text-center"
+                        onClick={() => {
+                          setQuantity(3);
+                          setIsSelect([3]);
+                        }}
+                        style={
+                          isSelect.includes(3)
+                            ? { backgroundColor: "#980066", color: "#FFFFFF" }
+                            : { backgroundColor: "#FFFFFF" }
+                        }
+                      >
+                        3
+                      </div>
+                    </div>
+                    <div key={vinyl.VinylID} className="mb-3">
+                      {
+                        vinyl.ProductID === item.ProductID ? (
+                          <>
+                            <p className="mb-3">
+                              {vinyl.VinylPrice * quantity} €
+                            </p>
+                            <button
+                              onClick={async () => {
+                                await addToCart(vinyl);
+                                success({
+                                  message: "Produit ajouté au panier !",
+                                });
+                              }}
+                              className="py-[2px] px-[22px] bg-buttonCart text-[#FFFFFF] font-[600]"
+                            >
+                              Ajouter au panier
+                            </button>
+                            <div className="border-t-2 border-gray-300 w-3/5 mt-3 pt-3">
+                              <div className="flex gap-x-4 items-center">
+                                <p className="text-body font-bold">
+                                  Nous contacter
+                                </p>
+                                <div className="flex gap-x-4">
+                                  <div>icone insta</div>
+                                  <div>icone facebook</div>
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        ) : null // Afficher une valeur vide
+                      }
+                    </div>
                   </div>
                 ))}
             </div>

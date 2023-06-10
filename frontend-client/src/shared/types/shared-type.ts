@@ -20,8 +20,8 @@ export interface Product {
   ProductStock: number;
   CategorieID: number;
   type: ProductType;
-  BrandID: number;
-  ProductThumb: string;
+  BrandID: number | null;
+  ProductThumb: string | null;
 }
 
 export interface Shoessize {

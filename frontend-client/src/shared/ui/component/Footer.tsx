@@ -40,34 +40,45 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div
-        className="bg-[#FFFFFF] min-h-[460px] lg:px-[150px] px-[25px]"
-        style={{
-          backgroundImage: `url("./src/assets/SHARED/logo_footer.png")`,
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div className="lg:flex">
+      <div className="bg-[#FFFFFF] min-h-[460px] lg:px-[150px] px-[25px] bg-contain bg-no-repeat bg-center bg-[url('./src/assets/SHARED/logo_footer.png')]">
+        <div className="lg:flex justify-center items-center">
           <div className="md:w-[30%]">
             <div className="w-full">
-              <h3 className="font-special text-[18px]">
+              <div className="mb-4">logo srr</div>
+              <h3 className="font-special text-[18px] mb-5">
                 Sneakers Station Record
               </h3>
+              <div>
+                <ul className="mb-5">
+                  <li>34 rue Carnot</li>
+                  <li>74000 Annecy</li>
+                </ul>
+                <ul>
+                  <li>04 50 51 03 86</li>
+                  <li>contact@ssr.fr</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div className="md:w-[30%]">
-            <p>Informations</p>
-            <li>Suivi des commandes</li>
-            <li>Retour et échanges</li>
-            <li>Nous contacter</li>
+            <ul>
+              <p className="text-[20px] font-semibold mb-5">Informations</p>
+              <li className="text-[15px] font-semibold">Suivi des commandes</li>
+              <li className="text-[15px] font-semibold">Retour et échanges</li>
+              <li className="text-[15px] font-semibold">Nous contacter</li>
+            </ul>
           </div>
           <div className="md:w-[30%]">
-            <p>Informations</p>
-            <li>Conditions générales de ventes</li>
-            <li>Mentions légales</li>
-            <li>Politique de confidentialité</li>
+            <ul>
+              <p className="text-[20px] font-semibold mb-5">Informations</p>
+              <li className="text-[15px] font-semibold">
+                Conditions générales de ventes
+              </li>
+              <li className="text-[15px] font-semibold">Mentions légales</li>
+              <li className="text-[15px] font-semibold">
+                Politique de confidentialité
+              </li>
+            </ul>
           </div>
         </div>
       </div>

@@ -149,7 +149,7 @@ const SneakersScren = () => {
             item.ProductName.toLowerCase().includes(filter.toLowerCase())
           )
           .filter((item: Product) =>
-            item.BrandID.toString().includes(brandFilter)
+            item.BrandID?.toString().includes(brandFilter)
           )
           .filter((product: Product) => {
             if (priceFilter === 0) {
