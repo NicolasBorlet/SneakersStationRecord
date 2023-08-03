@@ -64,7 +64,10 @@ const Header = () => {
           <div className="flex items-center flex-shrink-0 text-gray-800 mr-16">
             <span className="font-semibold text-xl tracking-tight">
               <a href="/">
-                <img src="./src/assets/SHARED/logo-ssr.png" />
+                <img
+                  src="http://ssr.local/wp-content/uploads/2023/06/logo-ssr.png"
+                  alt="logo Sneakers Station Records"
+                />
               </a>
             </span>
           </div>

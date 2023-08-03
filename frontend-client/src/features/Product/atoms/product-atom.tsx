@@ -17,8 +17,3 @@ export const selectedShoesState = atom<Shoessize>({
     ShoesSizeID: 1,
   },
 });
-
-export const producsListAtom = atom({
-  key: "producsListAtom",
-  default: [],
-});

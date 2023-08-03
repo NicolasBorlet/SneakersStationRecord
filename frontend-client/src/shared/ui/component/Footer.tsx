@@ -12,10 +12,13 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full mt-[30px] ">
+    <footer className="w-full mt-[100px]">
       <div className="bg-[#000000] lg:px-[200px] px-[25px] py-9">
         <div>
-          <img src="./src/assets/SHARED/logo_blanc.png" className="w-[100px]" />
+          <img
+            src="http://ssr.local/wp-content/uploads/2023/06/logo_blanc.png"
+            className="w-[100px]"
+          />
         </div>
         <div className="md:text-[26px] text-[15px] mb-2 md:mt-0 text-[#FFFFFF] font-sans">
           Nos nouveautées dans votre boîte mail
@@ -40,7 +43,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#FFFFFF] min-h-[460px] lg:px-[150px] px-[25px] bg-contain bg-no-repeat bg-center bg-[url('./src/assets/SHARED/logo_footer.png')]">
+      <div className="bg-[#FFFFFF] min-h-[460px] lg:px-[150px] px-[25px] bg-contain bg-no-repeat bg-center bg-[url('http://ssr.local/wp-content/uploads/2023/06/logo_footer.png')]">
         <div className="lg:flex justify-center items-center">
           <div className="md:w-[30%]">
             <div className="w-full">

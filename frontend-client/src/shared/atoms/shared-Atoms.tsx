@@ -25,12 +25,12 @@ export const links: HeaderLinksProps[] = [
   {
     links: "/account",
     title: "Account",
-    src: "./src/assets/SHARED/icon_profile.png",
+    src: "http://ssr.local/wp-content/uploads/2023/06/icon_profile.png",
   },
   {
     links: "/cart",
     title: "Panier",
-    src: "./src/assets/SHARED/icon_shopping_cart.png",
+    src: "http://ssr.local/wp-content/uploads/2023/06/icon_shopping_cart.png",
   },
 ];
 

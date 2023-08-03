@@ -13,6 +13,8 @@ import {
 } from "../../../../shared/types/shared-type";
 import { success } from "../../../../shared/ui/component/ToastComponent";
 import { ToastContainer } from "react-toastify";
+import ProductsLike from "../layout/ProductsLike";
+import Spacer from "../../../../shared/ui/component/Spacer";
 
 export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
   const [isShoes, setIsShoes] = useState<[]>();
@@ -72,7 +74,7 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
   return (
     <>
       {loading && <p>Loading...</p>}
-      <div>
+      <div className="mb-28">
         {product.map((item: Product) => (
           <div key={item.ProductID} className="flex w-full justify-between">
             <div className="w-[35%] flex justify-end">
@@ -228,6 +230,23 @@ export const ItemComponent: React.FC<ItemProps> = ({ product }) => {
           </div>
         ))}
       </div>
+      {product.map((item: Product) => (
+        <div key={item.ProductID}>
+          {item.type === "vinyl" ? (
+            <>
+              <ProductsLike vinyls={true} />
+              <Spacer size={100} />
+              <ProductsLike shoes={true} />
+            </>
+          ) : (
+            <>
+              <ProductsLike shoes={true} />
+              <Spacer size={100} />
+              <ProductsLike vinyls={true} />
+            </>
+          )}
+        </div>
+      ))}
       <ToastContainer />
     </>
   );
