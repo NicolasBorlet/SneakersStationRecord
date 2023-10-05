@@ -12,6 +12,7 @@ import AccountScreen from "./shared/ui/screen/AccountScreen.tsx";
 import PayementScreen from "./features/Payement/ui/screens/PayementScreen.tsx";
 import EventScreen from "./features/Events/ui/screens/EventScreen.tsx";
 import VinylScreen from "./features/Vinyls/ui/screen/VinylScreen.tsx";
+import AboutScreen from "./features/About/ui/screen/AboutScreen.tsx";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "events",
     element: <EventScreen />,
+  },
+  {
+    path: "about",
+    element: <AboutScreen />,
   },
   {
     path: "*",

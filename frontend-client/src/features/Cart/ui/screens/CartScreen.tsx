@@ -1,25 +1,21 @@
 import { useState, useEffect } from "react";
 import Layout from "../../../../shared/ui/layout/Layout";
 import { Product } from "../../../../shared/types/shared-type";
+import { useRecoilValue } from "recoil";
+import { productState } from "../../../../shared/atoms/shared-Atoms";
 
 const CartScreen = () => {
   const cartItemsFromLocalStorage = localStorage.getItem("cartItems");
   const parsedCartItems =
     cartItemsFromLocalStorage && JSON.parse(cartItemsFromLocalStorage);
   const [cartItems, setCartItems] = useState(parsedCartItems || []);
+  const products = useRecoilValue(productState);
 
-  const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
 
   // Update local storage when cart items change
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-
-    fetch("http://localhost:3000/product")
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-      });
   }, [cartItems]);
 
   // Calculate total

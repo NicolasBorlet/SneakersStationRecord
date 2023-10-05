@@ -8,10 +8,8 @@ const CheckoutForm = ({ clientSecret }: any) => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
-    // @ts-ignore
     const { error } = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        // @ts-ignore
         card: elements?.getElement(CardElement),
       },
     });
